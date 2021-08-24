@@ -6,9 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float speed = 12f;
-    public float gravity = -20f;
-    public float jumpHeight = 3f;
+    public float speed = 6f;
+    public float gravity = -10f;
+    public float jumpHeight = 0.5f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+
 
     // Update is called once per frame
     void Update()
@@ -39,8 +40,18 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+
+	if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 12f;
+        }
+	else
+	{
+	    speed = 6f;
+	}
+
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
-    }
+   }
 }
